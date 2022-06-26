@@ -1,4 +1,3 @@
-from email.policy import default
 from .. import db
 
 class Note(db.Model):

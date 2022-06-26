@@ -140,3 +140,4 @@ eb-package.zip
 
 # extras
 others/
+*.db

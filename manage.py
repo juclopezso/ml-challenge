@@ -2,7 +2,7 @@ import os
 from app.main import create_app, db
 from app import blueprint
 # models
-from app.main.model import note
+from app.main.model import note, item
 
 # app stucture: functional structure, consist of organizing the app by pieces by what they do
 # blueprint: collection of views, templates, static files and other elements

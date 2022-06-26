@@ -32,7 +32,7 @@ class NoteList(Resource):
 # decorator to specify the expected parameters
 @api.param('id', 'The note identifier')
 @api.response(404, 'Note not found.')
-class User(Resource):
+class Note(Resource):
     @api.doc('get a note')
     @api.marshal_with(_note)
     def get(self, id):
