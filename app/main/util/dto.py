@@ -2,6 +2,8 @@ from email.policy import default
 from flask_restx import Namespace, fields, reqparse
 from werkzeug.datastructures import FileStorage
 
+from app.main.util.constants import FileConfigEnum
+
 
 # DTO: data ttransfer object
 class NoteDto:
@@ -30,5 +32,5 @@ class ItemDto:
 class ItemCreatetDto:
     parser = reqparse.RequestParser()
     parser.add_argument('file', location='files', type=FileStorage, required=True)
-    parser.add_argument('encoding', location='form', help='Encoding of file', default='utf-8')
-    parser.add_argument('separator', location='form', help='Separator of file', default=',')
+    parser.add_argument('encoding', location='form', help='Encoding of file', default=FileConfigEnum.ENCODING.value)
+    parser.add_argument('separator', location='form', help='Separator of file', default=FileConfigEnum.SEPARATOR.value)

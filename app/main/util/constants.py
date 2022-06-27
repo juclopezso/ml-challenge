@@ -1,12 +1,13 @@
 from enum import Enum
 
 
-# TODO: change name
-class ConstantsEnum(Enum):
+class FileConfigEnum(Enum):
   """
   Constants for the service
   """
   DEFAULT_BUFFER_SIZE = 8192
+  ENCODING = 'utf-8'
+  SEPARATOR = ','
 
 
 class ApisEnum(Enum):
