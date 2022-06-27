@@ -14,4 +14,4 @@ class Item(db.Model):
     nickname = db.Column(db.String(255), index=True)
 
     def __repr__(self):
-        return "<Item {}-{}>".format(self.site, self.id)
+        return "<Item {}-{}. Seller {}>".format(self.site, self.id, self.nickname)

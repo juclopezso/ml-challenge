@@ -140,6 +140,7 @@ eb-package.zip
 
 # extras
 others/
-*.db
+*.db*
 app/*.csv
 app/*.txt
+*db.*
