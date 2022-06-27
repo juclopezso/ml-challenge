@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./
+    container_name: flask
+    restart: always
+    # network_mode: "host"
+    ports:
+      - "8008:8008"
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+    entrypoint: ./entrypoint.sh
+  db:
+    image: postgres:13-alpine
+    container_name: db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    # network_mode: "host"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=flasky
+      - POSTGRES_PASSWORD=flask1234
+      - POSTGRES_DB=flask
+
+volumes:
+  postgres_data:
