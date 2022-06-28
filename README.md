@@ -82,3 +82,4 @@ Nota: Si realiza algún cambio al código de la aplación, se sugiere limpiar el
 docker-compose down && docker-compose build --no-cache
 ```
 La aplicación correrá en la url http://127.0.0.1:8008/
+Se puede realizar conexión directa a la base de datos a través del puerto 5432.
