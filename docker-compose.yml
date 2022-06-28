@@ -5,9 +5,8 @@ services:
     build: ./
     container_name: flask
     restart: always
-    # network_mode: "host"
-    ports:
-      - "8008:8008"
+    expose: 
+      - 5000
     env_file:
       - ./.env
     depends_on:
@@ -18,13 +17,18 @@ services:
     container_name: db
     volumes:
       - postgres_data:/var/lib/postgresql/data/
-    # network_mode: "host"
     ports:
       - "5432:5432"
     environment:
       - POSTGRES_USER=flasky
       - POSTGRES_PASSWORD=flask1234
       - POSTGRES_DB=flask
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    restart: always
+    ports:
+      - "8008:80"
 
 volumes:
   postgres_data:

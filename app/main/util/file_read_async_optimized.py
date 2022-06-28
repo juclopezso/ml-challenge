@@ -6,8 +6,6 @@ from app.main.model.item import Item
 from .constants import ApisEnum, FileConfigEnum, countries_dict
 
 
-# TODO: config encoding
-# TODO: test separator and encoding
 async def handle_file(
     filepath, 
     encoding=FileConfigEnum.ENCODING.value, 
@@ -20,23 +18,26 @@ async def handle_file(
     items = []
 
     async with aiohttp.ClientSession() as session:
-        with open(filepath, 'r') as file:
+        with open(filepath, 'r', encoding=encoding) as file:
             tmp_lines = file.readlines(buffer_size)
 
             while tmp_lines:
-                # print lines lenght base on buffer_size
+                # print lines length base on buffer_size
                 # print(len([line for line in tmp_lines]))
-                items_group = await asyncio.gather(*(process_line(line, encoding, separator, session) for line in tmp_lines))
+
+                # adds the tasks to the loop
+                items_group = await asyncio.gather(*(process_line(line, separator, session) for line in tmp_lines))
                 for item in items_group:
                     if item is not None:
                         items.append(item)
 
+                # read the next buffer_size lines
                 tmp_lines = file.readlines(buffer_size)
 
     return items
 
 
-async def process_line(line, encoding, separator, session):
+async def process_line(line, separator, session):
     country_code_raw, item_code_raw = line.split(separator)
     if country_code_raw is None or item_code_raw is None or country_code_raw == '' or item_code_raw == '':
         return

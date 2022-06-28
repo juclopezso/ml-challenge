@@ -36,7 +36,7 @@ def bulk_save_items(data):
     init_time = datetime.now()
 
     try:
-      asyncio.run(create_items_from_file(filepath))
+      asyncio.run(create_items_from_file(filepath, data['encoding'], data['separator']))
 
     except Exception as err:
       print(err)
@@ -58,10 +58,10 @@ def bulk_save_items(data):
     return response_object, 201 # created
 
 
-async def create_items_from_file(filepath):
+async def create_items_from_file(filepath, encoding, separator):
     db.session = db.create_scoped_session()
     # handle the file
-    items = await handle_file(filepath)
+    items = await handle_file(filepath, encoding, separator)
     print("Inserted Items:", len(items))
     # bulk save in db
     db.session.bulk_save_objects(items)
