@@ -54,7 +54,7 @@ flask db upgrade
 ```
 flask run
 ```
-La aplicación correrá en la url localhost:5000
+La aplicación correrá en la url http://127.0.0.1:5000/
 
 ## Pruebas
 - Para correr las pruebas unitarias. Correr en la raíz del proyecto: 
@@ -81,4 +81,4 @@ Nota: Si realiza algún cambio al código de la aplación, se sugiere limpiar el
 ```
 docker-compose down && docker-compose build --no-cache
 ```
-La aplicación correrá en la url localhost:8008
+La aplicación correrá en la url http://127.0.0.1:8008/
